@@ -26,7 +26,7 @@ sudo apt install -yq /tmp/trisquelkey.deb
 # start build with mmdebstrap
 dist_version="$RELEASE"
 sudo mmdebstrap \
-    --arch=amd64 \
+    --arch=$ARCH \
     --variant=apt \
     --components="main" \
     --include=ca-certificates,locales,trisquel-keyring,software-properties-common,passwd \
