@@ -6,8 +6,8 @@ based on [wsldl](https://github.com/yuk7/wsldl)
 
 ![screenshot](https://github.com/arfshl/TrisquelWSL/raw/main/screenshot.png)
 
-[![GitHub Workflow Build amd64](https://img.shields.io/github/actions/workflow/status/arfshl/TrisquelWSL/build-amd64.yml?style=flat-square)](https://github.com/arfshl/TrisquelWSL/actions/workflows/build-amd64.yaml)
-[![GitHub Workflow Build arm64](https://img.shields.io/github/actions/workflow/status/arfshl/TrisquelWSL/build-arm64.yml?style=flat-square)](https://github.com/arfshl/TrisquelWSL/actions/workflows/build-arm64.yaml)
+[![Build amd64](https://github.com/arfshl/TrisquelWSL/actions/workflows/build-amd64.yml/badge.svg)](https://github.com/arfshl/TrisquelWSL/actions/workflows/build-amd64.yml)
+[![Build arm64](https://github.com/arfshl/TrisquelWSL/actions/workflows/build-arm64.yml/badge.svg)](https://github.com/arfshl/TrisquelWSL/actions/workflows/build-arm64.yml)
 [![Github All Releases](https://img.shields.io/github/downloads/arfshl/TrisquelWSL/total.svg?style=flat-square)](https://github.com/arfshl/TrisquelWSL/releases/latest)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![License](https://img.shields.io/github/license/arfshl/TrisquelWSL.svg?style=flat-square)
