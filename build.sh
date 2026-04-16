@@ -44,9 +44,12 @@ if [ $ARCH = amd64 ]; then
     bsdtar -xf icons.zip
     mv Ubuntu.exe trisquel.exe
     bsdtar -a -cf trisquel.zip rootfs.tar.gz trisquel.exe
-else
+elif [ $ARCH = arm64 ]; then 
     curl -L https://github.com/yuk7/wsldl/releases/download/26032000/icons_arm64.zip -o icons.zip
     bsdtar -xf icons.zip
     mv Ubuntu.exe trisquel.exe
     bsdtar -a -cf trisquel.zip rootfs.tar.gz trisquel.exe
+else
+    echo "Unsupported architecture: $ARCH"
+    exit 1  
 fi
