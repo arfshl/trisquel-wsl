@@ -11,8 +11,8 @@ case "$ARCH" in
         exit 1
         ;;
 esac
-echo "RELEASE=$RELEASE" >> "$GITHUB_ENV"
-echo "ARCH=$ARCH" >> "$GITHUB_ENV"
+echo "RELEASE=$RELEASE" >> "$GITHUB_OUTPUT"
+echo "ARCH=$ARCH" >> "$GITHUB_OUTPUT"
 
 # install depedencies
 curl -L -o /tmp/mmdebstrap.deb http://ftp.us.debian.org/debian/pool/main/m/mmdebstrap/mmdebstrap_1.5.7-3_all.deb
