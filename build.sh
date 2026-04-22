@@ -15,7 +15,6 @@ echo "RELEASE=$RELEASE" >> "$GITHUB_ENV"
 echo "ARCH=$ARCH" >> "$GITHUB_ENV"
 
 # install depedencies
-sudo apt update && sudo apt install -yq curl libarchive-tools
 curl -L -o /tmp/mmdebstrap.deb http://ftp.us.debian.org/debian/pool/main/m/mmdebstrap/mmdebstrap_1.5.7-3_all.deb
 sudo apt install -yq /tmp/mmdebstrap.deb
 curl -L -o /tmp/keyring.deb http://ftp.us.debian.org/debian/pool/main/d/debian-archive-keyring/debian-archive-keyring_2025.1_all.deb
@@ -29,27 +28,45 @@ sudo mmdebstrap \
     --arch=$ARCH \
     --variant=apt \
     --components="main" \
-    --include=ca-certificates,locales,trisquel-keyring,software-properties-common,passwd \
-    --format=tar \
+    --include=trisquel-keyring,locales,passwd,software-properties-common,ca-certificates,sudo,libpam-systemd,dbus,systemd,mesa-utils,systemd-sysv \
+    --format=directory \
     ${dist_version} \
-    rootfs.tar.gz \
+    trisquel \
     "deb http://archive.trisquel.org/trisquel ${dist_version} main" \
     "deb http://archive.trisquel.org/trisquel ${dist_version}-updates main" \
     "deb http://archive.trisquel.org/trisquel ${dist_version}-security main" \
     "deb http://archive.trisquel.org/trisquel ${dist_version}-backports main"
 
-# combine wsldl and rootfs (with matching arch as machine)
-if [ $ARCH = amd64 ]; then 
-    curl -L https://github.com/yuk7/wsldl/releases/download/26032000/icons.zip -o icons.zip
-    bsdtar -xf icons.zip
-    mv Ubuntu.exe trisquel.exe
-    bsdtar -a -cf trisquel.zip rootfs.tar.gz trisquel.exe
-elif [ $ARCH = arm64 ]; then 
-    curl -L https://github.com/yuk7/wsldl/releases/download/26032000/icons_arm64.zip -o icons.zip
-    bsdtar -xf icons.zip
-    mv Ubuntu.exe trisquel.exe
-    bsdtar -a -cf trisquel.zip rootfs.tar.gz trisquel.exe
-else
-    echo "Unsupported architecture: $ARCH"
-    exit 1  
-fi
+cat <<-EOF | sudo unshare -mpf bash -e -
+sudo mount --bind /dev ./trisquel/dev
+sudo mount --bind /proc ./trisquel/proc
+sudo mount --bind /sys ./trisquel/sys
+sudo echo 'nameserver 1.1.1.1' >> ./trisquel/etc/resolv.conf
+
+sudo chroot ./trisquel apt update
+sudo chroot ./trisquel apt purge -yq --allow-remove-essential coreutils-from-uutils
+sudo chroot ./trisquel apt purge -yq --allow-remove-essential rust-coreutils
+sudo chroot ./trisquel apt install -yq coreutils-from-gnu
+sudo chroot ./trisquel apt install -yq gnu-coreutils
+sudo chroot ./trisquel apt clean
+
+sudo rm -rf ./trisquel/var/lib/apt/lists/*
+sudo rm -rf ./trisquel/var/tmp*
+sudo rm -rf ./trisquel/tmp*
+EOF
+
+sudo cp ./wslconf/oobe.sh ./trisquel/etc/oobe.sh
+sudo chmod 644 ./trisquel/etc/oobe.sh
+sudo chmod +x ./trisquel/etc/oobe.sh
+sudo cp ./wslconf/oobe.sh ./trisquel/etc/wsl.conf
+sudo chmod 644 ./trisquel/etc/wsl.conf
+sudo cp ./wslconf/wsl-distribution.conf ./trisquel/etc/wsl-distribution.conf
+sudo chmod 644 ./trisquel/etc/wsl-distribution.conf
+sudo mkdir -p ./trisquel/usr/lib/wsl/
+# sudo cp ./wslconf/icon.ico ./trisquel/usr/lib/wsl/icon.ico
+
+cd ./trisquel
+sudo tar --numeric-owner --absolute-names -c  * | gzip --best > ../install.tar.gz
+mv ../install.tar.gz ../trisquel-$ARCH.wsl
+
+
