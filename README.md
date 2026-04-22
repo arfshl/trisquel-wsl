@@ -1,5 +1,5 @@
 # Trisquel WSL
-Trisquel latest on WSL, including non-lts release
+Trisquel GNU/Linux Libre, Running on WSL (such a ragebait i know) 
 
 [![Build](https://github.com/arfshl/Trisquel-wsl/actions/workflows/build.yml/badge.svg)](https://github.com/arfshl/Trisquel-wsl/actions/workflows/build.yml)
 
