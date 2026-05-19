@@ -37,24 +37,6 @@ sudo mmdebstrap \
     "deb http://archive.trisquel.org/trisquel ${dist_version}-security main" \
     "deb http://archive.trisquel.org/trisquel ${dist_version}-backports main"
 
-cat <<-EOF | sudo unshare -mpf bash -e -
-sudo mount --bind /dev ./trisquel/dev
-sudo mount --bind /proc ./trisquel/proc
-sudo mount --bind /sys ./trisquel/sys
-sudo echo 'nameserver 1.1.1.1' >> ./trisquel/etc/resolv.conf
-
-sudo chroot ./trisquel apt update
-sudo chroot ./trisquel apt purge -yq --allow-remove-essential coreutils-from-uutils
-sudo chroot ./trisquel apt purge -yq --allow-remove-essential rust-coreutils
-sudo chroot ./trisquel apt install -yq coreutils-from-gnu
-sudo chroot ./trisquel apt install -yq gnu-coreutils
-sudo chroot ./trisquel apt clean
-
-sudo rm -rf ./trisquel/var/lib/apt/lists/*
-sudo rm -rf ./trisquel/var/tmp*
-sudo rm -rf ./trisquel/tmp*
-EOF
-
 sudo cp ./wslconf/oobe.sh ./trisquel/etc/oobe.sh
 sudo chmod 644 ./trisquel/etc/oobe.sh
 sudo chmod +x ./trisquel/etc/oobe.sh
