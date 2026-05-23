@@ -1,6 +1,8 @@
 # Trisquel WSL
 Trisquel GNU/Linux Libre, Running on WSL (such a ragebait i know) 
 
+Based on [Trisquel docker image](https://hub.docker.com/r/arfshl/trisquel)
+
 [![Build](https://github.com/arfshl/Trisquel-wsl/actions/workflows/build.yml/badge.svg)](https://github.com/arfshl/Trisquel-wsl/actions/workflows/build.yml)
 
 ![screenshot](https://github.com/arfshl/Trisquel-wsl/raw/main/screenshot.png)
@@ -24,6 +26,6 @@ Trisquel GNU/Linux Libre, Running on WSL (such a ragebait i know)
 
 [![alpine-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=alpine-wsl&theme=transparent)](https://github.com/arfshl/alpine-wsl)
 [![void-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=void-wsl&theme=transparent)](https://github.com/arfshl/void-wsl)
-[![ubuntu-latest-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=ubuntu-latest-wsl&theme=transparent)](https://github.com/arfshl/ubuntu-latest-wsl)
+[![ubuntu-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=ubuntu-wsl&theme=transparent)](https://github.com/arfshl/ubuntu-wsl)
 [![debian-rolling-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=debian-rolling-wsl&theme=transparent)](https://github.com/arfshl/debian-rolling-wsl)
 [![devuan-wsl](https://github-readme-stats-fast.vercel.app/api/pin/?username=arfshl&repo=devuan-wsl&theme=transparent)](https://github.com/arfshl/devuan-wsl)
