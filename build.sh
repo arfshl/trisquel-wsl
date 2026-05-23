@@ -21,7 +21,7 @@ docker pull "arfshl/trisquel:latest@${digest}"
 docker export $(docker create "arfshl/trisquel:latest@${digest}") | xz -T 0 > "$GITHUB_WORKSPACE/trisquel.tar.xz"
 
 mkdir -p ./trisquel
-sudo tar -xJpf ubuntu.tar.xz -C ./trisquel
+sudo tar -xJpf trisquel.tar.xz -C ./trisquel
 cat <<-EOF | sudo unshare -mpf bash -e -
 sudo mount --bind /dev ./trisquel/dev
 sudo mount --bind /proc ./trisquel/proc
