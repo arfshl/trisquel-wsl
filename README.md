@@ -1,8 +1,6 @@
 # Trisquel WSL
 Trisquel GNU/Linux Libre, Running on WSL (such a ragebait i know) 
 
-Based on [Trisquel docker image](https://hub.docker.com/r/arfshl/trisquel)
-
 [![Build](https://github.com/arfshl/Trisquel-wsl/actions/workflows/build.yml/badge.svg)](https://github.com/arfshl/Trisquel-wsl/actions/workflows/build.yml)
 
 ![screenshot](https://github.com/arfshl/Trisquel-wsl/raw/main/screenshot.png)
